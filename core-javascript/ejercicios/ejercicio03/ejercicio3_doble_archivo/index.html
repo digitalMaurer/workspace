@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wheel Size Checker</title>
+    <style>
+        #thickness-warning {
+            font-size: 20px; /* Tamaño de texto más grande */
+            color: red; /* Color del texto en rojo */
+            background-color: yellow; /* Fondo amarillo */
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+            display: none; /* Inicialmente oculto */
+        }
+    </style>
+</head>
+<body>
+    <h1>Wheel Size Checker</h1>
+    <form onsubmit="event.preventDefault(); checkWheel();">
+        <label for="diameter">Wheel Diameter (m):</label>
+        <input type="number" id="diameter" step="0.01" required>
+        <br><br>
+        <label for="thickness">Wheel Thickness (m):</label>
+        <input type="number" id="thickness" step="0.01" required>
+        <br><br>
+        <button type="submit">Check Wheel</button>
+    </form>
+    <p id="result"></p>
+    <p id="thickness-warning"></p> <!-- Mensaje de advertencia de grosor -->
+
+    <!-- Enlace al archivo JavaScript externo -->
+    <script src="script.js"></script>
+</body>
+</html>

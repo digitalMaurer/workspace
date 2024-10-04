@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wheel Size Checker</title>
+    <style>
+        #thickness-warning {
+            font-size: 20px; /* Tamaño de texto más grande */
+            color: red; /* Color del texto en rojo */
+            background-color: yellow; /* Fondo amarillo */
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+            display: none; /* Inicialmente oculto */
+        }
+    </style>
+    <script>
+        function checkWheel() {
+            // Obtener los valores de entrada
+            const diameter = parseFloat(document.getElementById("diameter").value);
+            const thickness = parseFloat(document.getElementById("thickness").value);
+            let message = "";
+            let thicknessMessage = "";
+
+            // Comprobar el diámetro y asignar el mensaje
+            if (diameter > 1.4) {
+                message = "La rueda es para un vehículo grande.";
+                if (thickness < 0.4) {
+                    thicknessMessage = "El grosor para esta rueda es inferior al recomendado.";
+                }
+            } else if (diameter > 0.8 && diameter <= 1.4) {
+                message = "La rueda es para un vehículo mediano.";
+                if (thickness < 0.25) {
+                    thicknessMessage = "El grosor para esta rueda es inferior al recomendado.";
+                }
+            } else {
+                message = "La rueda es para un vehículo pequeño.";
+            }
+
+            // Mostrar el mensaje principal
+            document.getElementById("result").innerText = message;
+
+            // Mostrar o esconder el mensaje de grosor
+            if (thicknessMessage) {
+                document.getElementById("thickness-warning").innerText = thicknessMessage;
+                document.getElementById("thickness-warning").style.display = "block";
+            } else {
+                document.getElementById("thickness-warning").style.display = "none";
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Wheel Size Checker</h1>
+    <form onsubmit="event.preventDefault(); checkWheel();">
+        <label for="diameter">Wheel Diameter (m):</label>
+        <input type="number" id="diameter" step="0.01" required>
+        <br><br>
+        <label for="thickness">Wheel Thickness (m):</label>
+        <input type="number" id="thickness" step="0.01" required>
+        <br><br>
+        <button type="submit">Check Wheel</button>
+    </form>
+    <p id="result"></p>
+    <p id="thickness-warning"></p> <!-- Mensaje de advertencia de grosor -->
+</body>
+</html>
